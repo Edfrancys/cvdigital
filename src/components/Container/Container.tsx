@@ -3,12 +3,10 @@ import {motion} from 'framer-motion';
 
 import styled from './Container.module.css'
 
-export const Container: React.FC = () => {
+export const Container: React.FC<React.ReactNode> = ({children}) => {
     return (
-        <motion.section
-            className={styled.}
-        >
-
-        </motion.section>
+        <section className={styled.container} >
+            {children}
+        </section>
     );
 };
