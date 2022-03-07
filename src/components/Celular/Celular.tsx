@@ -1,7 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
-import styled from './Celular.module.css'
+import styled from './Celular.module.css';
 
 export const Celular: React.FC<React.ReactNode> = ({children}) => {
     
@@ -12,7 +12,7 @@ export const Celular: React.FC<React.ReactNode> = ({children}) => {
         hidden: {
             opacity: 0
         }
-    }
+    };
 
     return(
         <motion.div className={styled.container} 
@@ -32,4 +32,4 @@ export const Celular: React.FC<React.ReactNode> = ({children}) => {
            
         </motion.div>
     );
-}
+};
