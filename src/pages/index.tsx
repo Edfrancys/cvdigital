@@ -61,7 +61,7 @@ const Footer = () => {
     );
 };
 
-const Home: React.FC = (props) => {
+const Home: React.FC = () => {
     return (
         <Container>
             <Celular>
