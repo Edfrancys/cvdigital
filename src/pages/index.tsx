@@ -10,6 +10,7 @@ import styled from '../styles/Home.module.css';
 
 const logo = '/logo-vejartes.png';
 const logoCvDigital = '/logo-cvdigital.png';
+const divisor = '/separator.png';
 
 const Header:React.FC = () => {
     return (
@@ -45,7 +46,7 @@ const InterativeArea = () => {
 
                 <a href='https://www.instagram.com/vejartes/?hl=pt'><FaInstagram/></a>
                 <a href='https://pt-br.facebook.com/vejartes/'><AiOutlineFacebook/></a>
-                <a href='https://g.page/vejartes-digital?share'><FaMapMarkerAlt/></a>
+                <a href='https://maps.app.goo.gl/7oG35NZi4uv4g6s18'><FaMapMarkerAlt/></a>
             </div>
             {/* <ButtonAction /> */}            
         </section>
@@ -67,7 +68,10 @@ const Home: React.FC = () => {
             <Celular>
                 <Header />
                 <Content />
-                <div className={styled.divisor} />
+                <div className={styled.divisor}>
+                    <img src={divisor} />
+                </div>
+
                 <InterativeArea />
                 <Footer />
             </Celular>

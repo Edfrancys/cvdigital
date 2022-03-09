@@ -1,32 +1,33 @@
-FROM node:16-alpine as base
+FROM node:16-alpine as dependencias
 
-RUN mkdir -p /home/dev
-WORKDIR /home/dev
+RUN mkdir -p /dep
+WORKDIR /dep
 
-COPY ./package.json ./
-COPY ./yarn.lock ./
-RUN yarn install
+COPY ./package.json ./yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+
+#RUN BUILD APP
+FROM dependencias as build
+
+RUN mkdir -p /build
+WORKDIR /build
 
 COPY ./ ./
 
-#RUN BUILD APP
-FROM base as build
-
-RUN mkdir -p /home/build
-WORKDIR /home/build
-
-COPY --from=base /home/dev ./
+COPY --from=dependencias /dep/node_modules ./node_modules
 RUN yarn build
 
-#DEPLOY APLICATION
+#PRODUCTION APLICATION
 FROM node:16-alpine as deploy
 
-RUN mkdir -p /home/app
-WORKDIR /home/app
+RUN mkdir -p /app
+WORKDIR /app
+ENV NODE_ENV production
 
-COPY --from=build /home/build/package.json ./package.json
-COPY --from=build /home/build/.next ./.next
-COPY --from=build /home/build/public ./public
+COPY --from=build /build/package.json ./package.json
+COPY --from=build /build/node_modules ./node_modules
+COPY --from=build /build/.next ./.next
+COPY --from=build /build/public ./public
 
-RUN yarn add next
 CMD [ "yarn", "start" ]

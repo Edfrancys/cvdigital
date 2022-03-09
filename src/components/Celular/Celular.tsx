@@ -28,6 +28,7 @@ export const Celular: React.FC<React.ReactNode> = ({children}) => {
                 >
                     {children}
                 </motion.div>
+                <div className={styled.button} />
             </div>
            
         </motion.div>
